@@ -1,4 +1,4 @@
-@(form: Form[Application.Upload])
+@(form: Form[Application.Upload], user: Users)
 
 <html>
     <head>
@@ -15,10 +15,9 @@
                 <input type="file" name="picture" class="btn btn-default btn-lg btn-block" value="@form("picture").value">
                 <!-- <button type="submit">Upload image!</button> -->
                 </br>
-
+                <input type=text name="email" placeholder="Email" value=@user.email hidden>
                 <input type="username"  name="title" style="width: 500px;" class="form-control input-lg" placeholder="Title">
                 </br>
-
                 <button class="btn btn-lg btn-primary btn-block" style="width: 500px;" type="submit">Upload Image</button>
                 </br>
                 </br>

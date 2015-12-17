@@ -109,27 +109,57 @@ public class Application extends Controller {
         );
     }
 
-    public Result uploadPage() {
+    public Result uploadPage(String email) {
         return ok(
-            upload.render(Form.form(Upload.class))
+            upload.render(Form.form(Upload.class), Users.findByEmail(email))
         );
     }
 
     public static class Upload {
         public String title;
         public File picture;
+        public String email;
     }
 
-    public Result upload() {
+        public Result upload() {
         Form<Upload> uploadForm = Form.form(Upload.class).bindFromRequest();
-        File file = uploadForm.get().picture;
-        System.out.println("file");
-        // get title
-        // upload to s3
-        // add artwork filepath and title to db
-        System.out.println(file);
+        File myFile = uploadForm.get().picture;
+        String email=uploadForm.get().email;
+        String title=uploadForm.get().title;
+        //return ok(email);
+        String filePath=myFile.getAbsolutePath();
+        //return ok(filePath);
+        // picture.file = request().body().asRaw().asFile();
+         String bucketName="dojoart/art";
+         String keyName=title;
+        String uploadFileName=filePath;
+        AmazonS3 s3client = new AmazonS3Client(new ProfileCredentialsProvider());
+        try {
+            System.out.println("Uploading a new object to S3 from a file\n");
+            File file = new File(uploadFileName);
+            s3client.putObject(new PutObjectRequest(
+                    bucketName, keyName, file));
 
-        return ok("File uploaded");
+        } catch (AmazonServiceException ase) {
+            System.out.println("Caught an AmazonServiceException, which " +
+                    "means your request made it " +
+                    "to Amazon S3, but was rejected with an error response" +
+                    " for some reason.");
+            System.out.println("Error Message:    " + ase.getMessage());
+            System.out.println("HTTP Status Code: " + ase.getStatusCode());
+            System.out.println("AWS Error Code:   " + ase.getErrorCode());
+            System.out.println("Error Type:       " + ase.getErrorType());
+            System.out.println("Request ID:       " + ase.getRequestId());
+        } catch (AmazonClientException ace) {
+            System.out.println("Caught an AmazonClientException, which " +
+                    "means the client encountered " +
+                    "an internal error while trying to " +
+                    "communicate with S3, " +
+                    "such as not being able to access the network.");
+            System.out.println("Error Message: " + ace.getMessage());
+        }
+        //Artworks.addArtwork(keyName,"ajb2233@columbia.edu");
+       return redirect(routes.Application.secureIndex("ajb2233@columbia.edu"));
     }
 
     public static class Artist {
@@ -148,7 +178,7 @@ public class Application extends Controller {
 	    public String password;
         public String validate() {
             System.out.println(email);
-            if (Users.findByEmail(email) == null) {
+            if (Users.findByEmail(email) == null && email != null) {
                 return null;
             }
             return "Account with email already exists";
