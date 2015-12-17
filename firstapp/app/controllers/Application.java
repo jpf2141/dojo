@@ -158,7 +158,7 @@ public class Application extends Controller {
                     "such as not being able to access the network.");
             System.out.println("Error Message: " + ace.getMessage());
         }
-        //Artworks.addArtwork(keyName,"ajb2233@columbia.edu");
+        Artworks.addArtwork(keyName,email, title);
        return redirect(routes.Application.secureIndex(email));
     }
 

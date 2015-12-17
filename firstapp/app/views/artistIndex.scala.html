@@ -85,6 +85,9 @@
                                                     <p>
                                                         <input type=number name="artId" placeholder="Bid" value=@arts(i).artid hidden>
                                                     </p>
+                                                                                                        <p>
+                                                        <input type=text name="email" placeholder="Email" value=@user.email hidden>
+                                                    </p>
                                                     @if(!arts(i).users.contains(user)) {
                                                     <p>
                                                         <input type="image" src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/glossy-silver-icons-arrows/008142-glossy-silver-icon-arrows-cut-arrow-up.png" height="42" width="42" alt="Submit" />
@@ -112,7 +115,9 @@
                                                     <div class="col-lg-4 col-sm-4 col-xs-4">
                                                         @helper.form(routes.Application.click("bid")) {
                                                         Submit Bid
-                                                        
+                                                        <p>
+                                                        <input type=text name="email" placeholder="Email" value=@user.email hidden>
+                                                        </p>
                                                         <p>
                                                             <input type=number name="bid" id="bid@i" placeholder="Bid">
                                                         </p>
