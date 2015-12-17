@@ -68,6 +68,7 @@ body {
 .masthead-brand {
   margin-top: 10px;
   margin-bottom: 10px;
+  color: white;
 }
 
 .masthead-nav > li {
@@ -131,10 +132,13 @@ body {
 }
 
 .gridImage{
-    max-width: 150px;
-    max-height: 150px;
+    max-width: 200px;
+    max-height: 200px;
+    horizontal-align: middle;
     vertical-align: middle;
     padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     padding-bottom: 10px;
 }
 

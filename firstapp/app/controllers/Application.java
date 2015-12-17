@@ -109,9 +109,9 @@ public class Application extends Controller {
         );
     }
 
-    public Result uploadPage() {
+    public Result uploadPage(String email) {
         return ok(
-            upload.render(Form.form(Upload.class))
+            upload.render(Form.form(Upload.class), Users.findByEmail(email))
         );
     }
 
@@ -124,13 +124,14 @@ public class Application extends Controller {
         public Result upload() {
         Form<Upload> uploadForm = Form.form(Upload.class).bindFromRequest();
         File myFile = uploadForm.get().picture;
-        //String email=uploadForm.get().email;
+        String email=uploadForm.get().email;
+        String title=uploadForm.get().title;
         //return ok(email);
         String filePath=myFile.getAbsolutePath();
         //return ok(filePath);
         // picture.file = request().body().asRaw().asFile();
          String bucketName="dojoart/art";
-         String keyName="realCrashB";
+         String keyName=title;
         String uploadFileName=filePath;
         AmazonS3 s3client = new AmazonS3Client(new ProfileCredentialsProvider());
         try {
