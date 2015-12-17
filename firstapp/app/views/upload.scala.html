@@ -2,7 +2,6 @@
 
 <html>
     <head>
-        <h1><a href="@routes.Application.index" id="logo">Dojo</a></h1>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
         integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
         crossorigin="anonymous">
@@ -10,11 +9,22 @@
     </head>
 
     <body>
-        <div>
+        <div style="margin:0 auto; width: 500px;">
             <h1>Upload a new image:</h1>
             @helper.form(action = routes.Application.upload) {
-                <input type="file" name="picture" value="@form("picture").value">
-                <button type="submit">Upload image!</button>
+                <input type="file" name="picture" class="btn btn-default btn-lg btn-block" value="@form("picture").value">
+                <!-- <button type="submit">Upload image!</button> -->
+                </br>
+
+                <input type="username"  name="title" style="width: 500px;" class="form-control input-lg" placeholder="Title">
+                </br>
+                <button class="btn btn-lg btn-primary btn-block" style="width: 500px;" type="submit">Upload Image</button>
+                </br>
+                </br>
+
+                <button type="button" class="btn btn-default btn-lg btn-block"><a href="/secureIndex"><h4>Home</h4></a></button>
+
+
             }
         </div>
     </body>
