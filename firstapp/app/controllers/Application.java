@@ -159,7 +159,7 @@ public class Application extends Controller {
             System.out.println("Error Message: " + ace.getMessage());
         }
         //Artworks.addArtwork(keyName,"ajb2233@columbia.edu");
-       return redirect(routes.Application.secureIndex("ajb2233@columbia.edu"));
+       return redirect(routes.Application.secureIndex(email));
     }
 
     public static class Artist {
