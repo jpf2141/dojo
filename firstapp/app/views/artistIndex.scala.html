@@ -45,12 +45,13 @@
                             <h3 class="masthead-brand">Dojo</h3>
                             <nav>
                                 <ul class="nav masthead-nav">
-                                    <li class="inactive"><a href="">Welcome to @user.username</a></li>
                                     <li class="inactive"><a href="@routes.Application.secureIndex(user.email)">Home</a></li>
                                     <li class="inactive"><a href="@routes.Application.index">Logout</a></li>
                                 </ul>
                             </nav>
                         </div>
+                        <br>
+                        <h1 style="color:white">Welcome to @user.username's Page!</h1>
                     </div>
                     
                     @for(i<-0 to arts.size()-1) {

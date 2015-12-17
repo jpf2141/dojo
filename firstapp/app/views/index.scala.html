@@ -50,10 +50,10 @@
                     </div>
                 </div>
                 
-                @for(i<-0 to 8) {
+                @for(i<-0 to arts.size()-1) {
                 
                 @if(i % 3 == 0) { <div class="row"> }
-                    <div class="col-lg-4 col-sm-6 col-xs-12">
+                    <div class="col-lg-4 col-sm-8 col-xs-12">
                     <!-- image trigger modal -->
                         <a data-toggle="modal" data-target="#myModal@i">
                             <img src=@arts(i).filePath class="gridImage" onclick="endAuction(@arts(i).auction.ended, 'bid@i', 'submit@i','modalFooter@i');">
